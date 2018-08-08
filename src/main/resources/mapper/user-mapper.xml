@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+    <insert id="create" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+            db.user
+            VALUE (NULL, #{username}, md5(#{password}))
+    </insert>
+    <select id="query" parameterType="user" resultType="user">
+        SELECT *
+        FROM db.user
+        WHERE username = #{username} AND password = #{password}
+    </select>
+    <select id="queryByUsername" parameterType="user" resultType="user">
+        SELECT *
+        FROM db.user
+        WHERE username = #{username}
+    </select>
+</mapper>
